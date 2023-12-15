@@ -1,5 +1,12 @@
+import { Box } from "@mui/material";
+import LoginForm from "./components/LoginForm";
+
 const LoginPage = () => {
-  return <div>LoginPage</div>;
+  return (
+    <Box width="75%">
+      <LoginForm />
+    </Box>
+  );
 };
 
 export default LoginPage;
