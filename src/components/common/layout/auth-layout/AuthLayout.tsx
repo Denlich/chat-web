@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import Welcome from "./components/Welcome";
 
@@ -9,7 +9,9 @@ const AuthLayout = () => {
         <Welcome />
       </Grid>
       <Grid item xs={8} bgcolor="#FFFFFF">
-        <Outlet />
+        <Box width="75%">
+          <Outlet />
+        </Box>
       </Grid>
     </Grid>
   );

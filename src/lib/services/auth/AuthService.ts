@@ -1,16 +1,21 @@
 import AuthAPI from "../../api/auth/AuthAPI";
 import { LoginBody } from "../../api/auth/types/LoginBody";
+import { RegisterBody } from "../../api/auth/types/RegisterBody";
 import StorageUtil from "../../utils/StorageUtil";
 
 class AuthService {
-  static async login(body: LoginBody) {
+  async login(body: LoginBody) {
     const tokens = await AuthAPI.login(body);
     StorageUtil.setTokens(tokens.accessToken, tokens.refreshToken);
   }
 
-  static logout() {
+  logout() {
     StorageUtil.deleteTokens();
+  }
+
+  async register(body: RegisterBody) {
+    await AuthAPI.register(body);
   }
 }
 
-export default AuthService;
+export default new AuthService();
