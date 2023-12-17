@@ -1,8 +1,14 @@
 import { Box, Grid } from "@mui/material";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import Welcome from "./components/Welcome";
+import { useAuthentication } from "../../../../hooks/use-authentication/useAuthentication";
 
 const AuthLayout = () => {
+  const { isLoggedIn } = useAuthentication();
+  if (isLoggedIn) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <Grid container spacing={20} height="100vh" mt={0}>
       <Grid item xs={4} bgcolor="#F5F8FB">

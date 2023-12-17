@@ -14,6 +14,10 @@ class StorageUtil {
     return accessToken && refreshToken ? { accessToken, refreshToken } : null;
   }
 
+  getAccessToken(): string | null {
+    return this.getTokens()?.accessToken || null;
+  }
+
   deleteTokens() {
     localStorage.removeItem(STORAGE_KEYS.ACCESS_TOKEN);
     localStorage.removeItem(STORAGE_KEYS.REFRESH_TOKEN);
