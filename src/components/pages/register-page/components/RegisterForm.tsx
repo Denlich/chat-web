@@ -5,6 +5,8 @@ import { Stack, Button, Typography } from "@mui/material";
 import Input from "../../../common/ui/form/input-mui";
 import getErrorMessage from "../../../../lib/utils/getErrorMessage";
 import AuthService from "../../../../lib/services/auth/AuthService";
+import { useAuthentication } from "../../../../hooks/use-authentication/useAuthentication";
+import { useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
   const {
@@ -15,10 +17,13 @@ const RegisterForm = () => {
   } = useForm<RegisterFormValues>({
     resolver: zodResolver(schema),
   });
+  const navigate = useNavigate();
+  const { update } = useAuthentication();
 
   const onSubmit = handleSubmit(async (data) => {
     try {
       await AuthService.register(data);
+      await update().then(() => navigate("/"));
     } catch (error: unknown) {
       const message = getErrorMessage(error);
       setError("root", { message });

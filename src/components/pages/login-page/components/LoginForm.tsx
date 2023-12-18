@@ -5,15 +5,20 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginFormValues, schema } from "../utils";
 import getErrorMessage from "../../../../lib/utils/getErrorMessage";
 import AuthService from "../../../../lib/services/auth/AuthService";
+import { useAuthentication } from "../../../../hooks/use-authentication/useAuthentication";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const { handleSubmit, control, setError } = useForm<LoginFormValues>({
     resolver: zodResolver(schema),
   });
+  const navigate = useNavigate();
+  const { update } = useAuthentication();
 
   const onSubmit = handleSubmit(async (data) => {
     try {
       await AuthService.login(data);
+      await update().then(() => navigate("/"));
     } catch (error: unknown) {
       const message = getErrorMessage(error);
       if (message === "The password is incorrect") {

@@ -14,7 +14,8 @@ class AuthService {
   }
 
   async register(body: RegisterBody) {
-    await AuthAPI.register(body);
+    const tokens = await AuthAPI.register(body);
+    StorageUtil.setTokens(tokens.accessToken, tokens.refreshToken);
   }
 }
 
