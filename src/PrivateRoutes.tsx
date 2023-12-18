@@ -1,6 +1,7 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useAuthentication } from "./hooks/use-authentication/useAuthentication";
 import AuthService from "./lib/services/auth/AuthService";
+import RootLayout from "./components/common/layout/root-layout/RootLayout";
 
 const PrivateRoutes = () => {
   const { isLoggedIn } = useAuthentication();
@@ -10,7 +11,7 @@ const PrivateRoutes = () => {
     return <Navigate to="/login" />;
   }
 
-  return <Outlet />;
+  return <RootLayout />;
 };
 
 export default PrivateRoutes;
