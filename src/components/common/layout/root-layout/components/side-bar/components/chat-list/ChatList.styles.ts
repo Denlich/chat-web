@@ -7,4 +7,5 @@ export const chatListStyles: SxProps<Theme> = {
   boxSizing: "border-box",
   gap: "1rem",
   height: "100%",
+  padding: "0.25rem",
 };
