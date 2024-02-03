@@ -1,7 +1,8 @@
 import { Box } from "@mui/material";
 import { useState } from "react";
 import * as styles from "./ChatList.styles";
-import Chat from "./components/Chat";
+import Chat from "./chat";
+import { useChat } from "../../../../../../../hooks/use-chat/useChat";
 
 const chatList = [
   {
@@ -21,6 +22,12 @@ for (let i = 0; i < 50; i++) {
 
 const ChatList = () => {
   const [isActive, setIsActive] = useState<number | null>(null);
+  const { getChat } = useChat();
+
+  const handleClick = (id: number) => {
+    setIsActive(id);
+    getChat(id);
+  };
 
   return (
     <Box sx={styles.chatListStyles}>
@@ -31,7 +38,7 @@ const ChatList = () => {
           chatName={chat.chatName}
           time={chat.time}
           isActive={isActive !== null ? isActive === index : false}
-          onClick={() => setIsActive(index)}
+          onClick={() => handleClick(index)}
         />
       ))}
     </Box>

@@ -8,12 +8,12 @@ export const chatStyles = (isActive?: boolean): SxProps<Theme> => ({
   padding: "1rem 0.5rem",
   borderRadius: "0.25rem",
   cursor: "pointer",
-  bgcolor: isActive ? "primary.light" : "white",
+  bgcolor: isActive ? "primary.main" : "white",
   color: "white",
   "&:hover": {
-    bgcolor: isActive ? "primary.dark" : "primary.light",
+    bgcolor: isActive ? "primary.dark" : "primary.main",
     "& .chatText": {
-      color: isActive ? "grey" : "white",
+      color: "white",
     },
     "& .chatName": {
       color: "white",
